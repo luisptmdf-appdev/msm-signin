@@ -13,4 +13,13 @@
 #  director_id :integer
 #
 class Movie < ApplicationRecord
+
+  has_many(:characters, { :class_name => "Character", :foreign_key => "movie_id", :dependent => :destroy })
+
+  belongs_to(:director, { :required => true, :class_name => "Director", :foreign_key => "director_id" })
+
+  validates(:title, { :presence => true })
+
+  validates(:title, { :uniqueness => { :scope => ["year", "director_id"] } })
+
 end

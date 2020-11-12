@@ -76,7 +76,7 @@ Rails.application.routes.draw do
 
   #------------------------------
 
-  get("/", {:controller => "application", :action => "index"})
+  get("/", {:controller => "movies", :action => "index"})
   
 
 end
