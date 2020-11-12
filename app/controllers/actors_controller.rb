@@ -28,7 +28,7 @@ class ActorsController < ApplicationController
       the_actor.save
       redirect_to("/actors", { :notice => "Actor created successfully." })
     else
-      redirect_to("/actors", { :notice => "Actor failed to create successfully." })
+      redirect_to("/actors", { :alert => "Actor failed to create successfully." })
     end
   end
 

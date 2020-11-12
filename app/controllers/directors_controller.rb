@@ -28,7 +28,7 @@ class DirectorsController < ApplicationController
       the_director.save
       redirect_to("/directors", { :notice => "Director created successfully." })
     else
-      redirect_to("/directors", { :notice => "Director failed to create successfully." })
+      redirect_to("/directors", { :alert => "Director failed to create successfully." })
     end
   end
 

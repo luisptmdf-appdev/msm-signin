@@ -27,7 +27,7 @@ class CharactersController < ApplicationController
       the_character.save
       redirect_to("/characters", { :notice => "Character created successfully." })
     else
-      redirect_to("/characters", { :notice => "Character failed to create successfully." })
+      redirect_to("/characters", { :alert => "Character failed to create successfully." })
     end
   end
 
