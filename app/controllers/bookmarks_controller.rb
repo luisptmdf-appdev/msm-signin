@@ -1,8 +1,15 @@
 class BookmarksController < ApplicationController
   def index
     matching_bookmarks = Bookmark.all
-
     @list_of_bookmarks = matching_bookmarks.order({ :created_at => :desc })
+
+    if @current_user != nil
+      matching_movies = Movie.all.where.not({:id => @current_user.bookmarked_movies})
+    else
+      matching_movies = Movie.all
+    end
+    
+    @list_of_movies = matching_movies.order({ :created_at => :desc })
 
     render({ :template => "bookmarks/index.html.erb" })
   end

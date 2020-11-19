@@ -15,34 +15,28 @@
     </h2>
 
     <form action="/insert_bookmark" method="post">
-      <div>
-        <input type="hidden" id="user_id_box" name="query_user_id" value="<%= @current_user.id %>">
-      </div>
-
-      <div>
-        <label for="movie_id_box">
-          Movie
-        </label>
-
-        <input type="text" id="movie_id_box" name="query_movie_id">
-      </div>
-
+      <input type="hidden" id="user_id_box" name="query_user_id" value="<%= @current_user.id %>">
+      <select name="query_movie_id" id="movie_id_box">
+        <% @list_of_movies.each do|a_movie| %>
+          <option value= "<%= a_movie.id %>">
+            <%= a_movie.title %>
+          </option>
+        <% end %>
+      </select>
       <button>
-        Create bookmark
+        Bookmark this movie!
       </button>
     </form>
+
   </div>
 </div>
 
 <hr>
+
 <div>
   <div>
-    <table>
+    <table border="1">
       <tr>
-
-        <th>
-          User
-        </th>
 
         <th>
           Movie
@@ -53,19 +47,11 @@
         </th>
 
         <th>
-          Updated at
-        </th>
-
-        <th>
         </th>
       </tr>
 
       <% @list_of_bookmarks.each do |a_bookmark| %>
       <tr>
-
-        <td>
-          <%= a_bookmark.user.email %>
-        </td>
 
         <td>
           <%= a_bookmark.movie.title %>
@@ -74,13 +60,10 @@
         <td>
           <%= time_ago_in_words(a_bookmark.created_at) %> ago
         </td>
+        
         <td>
-          <%= time_ago_in_words(a_bookmark.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/bookmarks/<%= a_bookmark.id %>">
-            Show details
+          <a href="/delete_bookmark/<%= a_bookmark.id %>">
+            Un-bookmark
           </a>
         </td>
       </tr>
