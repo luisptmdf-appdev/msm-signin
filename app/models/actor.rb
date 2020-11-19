@@ -16,4 +16,8 @@ class Actor < ApplicationRecord
 
   has_many(:characters, { :through => :characters, :source => :movie })
 
+  validates(:name, { :presence => true })
+
+  validates(:name, { :uniqueness => { :scope => ["dob"] } })
+
 end

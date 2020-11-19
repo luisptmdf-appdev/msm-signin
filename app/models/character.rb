@@ -15,4 +15,8 @@ class Character < ApplicationRecord
 
   belongs_to(:actor, { :required => true, :class_name => "Actor", :foreign_key => "actor_id" })
 
+  validates(:name, { :presence => true })
+
+  validates(:name, { :uniqueness => { :scope => ["movie_id", "actor_id"] } })
+
 end
